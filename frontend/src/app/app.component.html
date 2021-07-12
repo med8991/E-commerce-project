@@ -1,0 +1,15 @@
+<!-- Toolbar -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <ul class="nav navbar-nav">
+          <li routerLinkActive="active"><a routerLink="store">Boutique</a></li>
+          <li routerLinkActive="active" *ngIf="userObservable|async"><a routerLink="cart">Panier</a></li>
+          <li routerLinkActive="active" *ngIf="!(userObservable|async)"><a routerLink="register">Créer un compte</a></li>
+          <li routerLinkActive="active" *ngIf="!(userObservable|async)"><a routerLink="login">Connexion</a></li>
+          <li><a (click)="onSignOut()" *ngIf="userObservable|async" style="cursor: pointer;">Se deconnecter</a></li>
+      </ul>
+  </div>
+</nav>
+
+
+<router-outlet></router-outlet>

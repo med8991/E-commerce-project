@@ -1,0 +1,38 @@
+<div class="style-store">
+    <h1>Votre Panier</h1>
+    <h5>Voici votre panier, vous pouvez-y ajouter des produits dès maintenant puis passer la commande</h5><br>
+    <button class="btn btn-primary" *ngIf="products.length !== 0" (click)="onOrder()">Passer la commande maintenant</button>
+    <div *ngIf="products.length === 0">
+        <br>
+        <h4>Votre panier est actuellement vide</h4>
+        <a class="btn btn-success" routerLink="/store">Visiter la boutique</a>
+    </div>
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="ifOrder">
+        <h4>Votre commande a été passé <br> Le montant total de votre commande est {{ totaleQuantity }}€</h4>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let product of products; let i = index;">
+            <div class="card card-price">
+                <div class="card-img">
+                    <img src="{{ product.target }}" class="img-responsive">
+                    <div class="card-caption">  
+                        <span class="h2" style="color: green;">{{ product.promotion }}</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="price">{{ product.prix }}€ <small>each</small></div>
+                    <div class="lead"><b>{{ product.titre }}</b></div>
+                    <ul class="details">
+                    <li><b>Categorie</b> : {{ product.categorie }} <b>Marque</b> : {{ product.marque }} <br><b>Quantité</b> : {{ product.quantite }}<br>{{ product.description }}</li>
+                    <a (click)="onIncreProduct(i)" class="btn btn-success"><i class="fa fa-plus"> <b> Quantité</b></i></a> &nbsp;&nbsp;&nbsp;&nbsp;<a (click)="onDescProduct(i)" class="btn btn-warning" *ngIf="product.quantite > 1"><i class="fa fa-minus"> <b> Quantité</b></i></a>
+                    </ul>
+                    <a (click)="onDeleteProduct(i)" class="btn btn-danger btn-lg btn-block buy-now">
+                    Supprimer du panier <span class="glyphicon glyphicon-triangle-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

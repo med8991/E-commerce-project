@@ -1,0 +1,44 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Créer un compte</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+      <mat-card-content>
+
+        <mat-form-field class="example-full-width">
+          <input type="text" id="name" formControlName="name" matInput placeholder="Nom complet">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="text" id="email" formControlName="email" matInput placeholder="Email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="password" id="password" formControlName="password" matInput placeholder="Mot de passe">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="password" id="passwordValidate" formControlName="passwordValidate" matInput placeholder="Validation mot de passe">
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button class="btn btn-success">Créer un compte</button>
+      <i *ngIf="loading" class="spinner-style fa fa-spinner fa-2x fa-pulse"></i>
+    </form>
+
+    <div *ngIf="errorMessage">
+      <br>
+      <div class="alert alert-danger">{{ errorMessage }}</div>
+    </div>
+
+    <div *ngIf="successMessage">
+      <br>
+      <div class="alert alert-success">{{ successMessage }}</div>
+    </div>
+  </mat-card>
+  
+</div>

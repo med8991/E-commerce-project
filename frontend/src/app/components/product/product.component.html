@@ -1,0 +1,79 @@
+<div class="style-store">
+    <h1>Boutique</h1>
+    <h5>Bienvenu dans notre boutique, vous pouvez trié les produits par n'importe quels critéres</h5><br>
+    <div>
+        <form [formGroup]="sortForm">
+            <mat-form-field class="example-full-width">
+                <mat-label><b>Choisir un Intervalle de prix</b></mat-label>
+                <mat-select formControlName="prix" value="selected">
+                    <mat-option (click)="onChange()" value="default">Aucun</mat-option>
+                    <mat-option (click)="onChange()" value="1/19">Entre 1€ à 19€</mat-option>
+                    <mat-option (click)="onChange()" value="20/49">Entre 20€ à 49€</mat-option>
+                    <mat-option (click)="onChange()" value="50/99">Entre 50€ à 99€</mat-option>
+                    <mat-option (click)="onChange()" value="100/149">Entre 100€ à 149€</mat-option>
+                    <mat-option (click)="onChange()" value="150/199">Entre 150€ à 199€</mat-option>
+                    <mat-option (click)="onChange()" value="sup200">Supérieur ou égale à 200€</mat-option>
+                </mat-select>
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field class="example-full-width">
+                <mat-label><b>Choisir une categorie</b></mat-label>
+                <mat-select formControlName="categorie" value="selected">
+                    <mat-option (click)="onChange()" value="default">Aucun</mat-option>
+                    <mat-option (click)="onChange()" value="Jouets">Jouets & Jeux</mat-option>
+                    <mat-option (click)="onChange()" value="High-Tech">High-Tech</mat-option>
+                    <mat-option (click)="onChange()" value="Auto">Auto & Moto</mat-option>
+                    <mat-option (click)="onChange()" value="Chaussures">Chaussures</mat-option>
+                    <mat-option (click)="onChange()" value="Vetements">Vêtements</mat-option>
+                </mat-select>
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field class="example-full-width">
+                <mat-label><b>Choisir une marque</b></mat-label>
+                <mat-select formControlName="marque" value="selected">
+                    <mat-option (click)="onChange()" value="default">Aucun</mat-option>
+                    <mat-option (click)="onChange()" value="Playmobil">Playmobil</mat-option>
+                    <mat-option (click)="onChange()" value="Lego">Lego</mat-option>
+                    <mat-option (click)="onChange()" value="Barbie">Barbie</mat-option>
+                    <mat-option (click)="onChange()" value="Adidas">Adidas</mat-option>
+                    <mat-option (click)="onChange()" value="Nike">Nike</mat-option>
+                    <mat-option (click)="onChange()" value="Samsung">Samsung</mat-option>
+                    <mat-option (click)="onChange()" value="Iphone">Iphone</mat-option>
+                    <mat-option (click)="onChange()" value="HP">HP</mat-option>
+                    <mat-option (click)="onChange()" value="Toyota">Toyota</mat-option>
+                    <mat-option (click)="onChange()" value="Renault">Renault</mat-option>
+                    <mat-option (click)="onChange()" value="Levi's">Levi's</mat-option>
+                    <mat-option (click)="onChange()" value="Boss">Boss</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <i *ngIf="loading" class="spinner-style fa fa-spinner fa-2x fa-pulse"></i>
+        <div *ngIf="successMessage">
+            <br>
+            <div class="alert alert-success">Le produit a bien été ajouté dans le panier</div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let product of products;">
+            <div class="card card-price">
+                <div class="card-img">
+                    <img src="{{ product.target }}" class="img-responsive">
+                    <div class="card-caption">
+                        <span class="h2" style="color: green;">{{ product.promotion }}</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="price">{{ product.prix }}€ <small>each</small></div>
+                    <div class="lead"><b>{{ product.titre }}</b></div>
+                    <ul class="details">
+                    <li><b>Categorie</b> : {{ product.categorie }} <b>Marque</b> : {{ product.marque }}<br>{{ product.description }}</li>
+                    </ul>
+                    <a (click)="onAddProduct(product)" class="btn btn-primary btn-lg btn-block buy-now">
+                    Ajouter au panier <span class="glyphicon glyphicon-triangle-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

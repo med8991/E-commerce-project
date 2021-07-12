@@ -1,0 +1,30 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Connexion</mat-card-title>
+      </mat-card-header>
+  
+      <form class="example-form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        
+        <mat-card-content>
+
+          <mat-form-field class="example-full-width">
+            <input type="text" id="email" formControlName="email" matInput placeholder="Email">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input type="password" id="password" formControlName="password" matInput placeholder="Password">
+          </mat-form-field>
+        
+        </mat-card-content>
+        <button class="btn btn-success">Se connecter</button>
+        <i *ngIf="loading" class="spinner-style fa fa-spinner fa-2x fa-pulse"></i>
+      </form>
+      <div *ngIf="errorMessage">
+        <br>
+        <div class="alert alert-danger">{{ errorMessage }}</div>
+      </div>
+    </mat-card>
+  
+  </div>
